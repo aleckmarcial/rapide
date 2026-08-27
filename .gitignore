@@ -1,0 +1,23 @@
+# Sensitive - database credentials
+src/config/dbcon.php
+
+# Dependencies
+vendor/
+node_modules/
+
+# Uploads (user-generated content)
+uploads/*
+!uploads/.gitkeep
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+cache/

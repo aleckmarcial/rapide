@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root{
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --bg-color-body: `#FABC3F`;
+    --text-color: `#FEE503`;
+    --btn-color: `#FFB22C`;
+    --acnt-color: `#ffe08a`;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+header{ /* container of whole navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: #202124;
+    position: relative;
+    z-index: 100;
+}
+
+.logo-container{ /* logo img container */
+    width: 70px;
+}
+
+.logo-img{ /* logo.png */
+    width: 100%;
+    height: auto;
+}
+
+.hamburger{ /* burger menu button */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border:none;
+    cursor: pointer;
+
+    span{
+        width: 100%;
+        height: 3px;
+        background: whitesmoke;
+    }
+}
+
+nav{  /* container of the navbar */
+    display: contents; /* to hide it from burger menu */
+}
+
+.navlinks{ /* container of the links and properties to make it invisible */
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #030303;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+
+    li{
+        padding: 10px;
+    }
+
+    a{
+        text-decoration: none;
+        text-align: justify;
+        color: #fff;
+        font-family: var(--font-body);
+        transition: all 0.3s ease 0s;
+    }
+
+    li a:hover{
+        color: #FEE503;
+    }
+}
+
+.navlinks.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+@media(min-width: 768px){
+    nav{
+        display: flex;
+    }
+
+    .navlinks{
+        display:flex;
+        position: static;     
+        opacity: 1;              
+        visibility: visible;     
+        transform: none;         
+        flex-direction: row;     
+        background: none;  
+    }
+    .hamburger{
+        display:none;
+    }
+}
