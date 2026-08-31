@@ -7,6 +7,10 @@
   --rapide-yellow: #ffc43d; /* button */
   --warm-offwhite: #f7f4ea;
   --acnt-color: #ffe08a;
+  --color-border: #e5dfcd;
+  --color-success: #2d9b68;
+  --color-warning: #d77b2a;
+  --color-error: #c74242;
 }
 
 main {
@@ -23,24 +27,24 @@ main.dimmed:after {
   background: rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
-
 .hero-container {
   /* whole hero section */
   position: relative;
   width: 100%;
   height: 100dvh;
   overflow: hidden; /* keeps the zoomed image from spilling out */
-}
 
-.hero-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 2s ease;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 2s ease;
+  }
 }
 
 .hero-container:hover img {
+  /* image zoom effect */
   transform: scale(1.08);
 }
 
@@ -109,12 +113,10 @@ main.dimmed:after {
   }
 }
 
-#about {
-  position: relative;
-  padding: 2rem 1.5rem;
-}
+/* !must remove unecessary css like #about max-width and margine inline */
 
-.about-section {
+.history-block,
+.advantages-block {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -123,25 +125,24 @@ main.dimmed:after {
 
 .advantages-block {
   background-color: var(--warm-offwhite);
-  border-radius: 16px;
   padding: 1.5rem;
   margin-top: 1rem;
 }
 
 .aboutImg-container {
   width: 100%;
+  
 
   img {
     width: 100%;
-    height: auto;
-    max-height: 220px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
   }
 }
 
 .description {
-  max-width: 65ch;
+  /* max-width: 65ch; */ /* makes the text width small */
 
   h1 {
     font-size: clamp(1.6rem, 6vw, 3.5rem);
@@ -165,6 +166,7 @@ main.dimmed:after {
 
   p {
     color: #2b2b2b;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-family: var(--font-body);
     padding-top: 10px;
     line-height: 20px;
@@ -201,7 +203,6 @@ main.dimmed:after {
 
 .advantage-list {
   list-style: none;
-  padding: 0;
   margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -226,11 +227,8 @@ main.dimmed:after {
   display: flex;
   justify-content: center;
   position: relative;
-  overflow: visible;
-  
 
   img {
-    max-width: 340px;
     width: 90%;
     height: auto;
     display: block;
@@ -242,19 +240,69 @@ main.dimmed:after {
 .miko-container::before {
   content: "";
   position: absolute;
-  width: 75%;
-  max-width: 260px;
+  width: 80%;
+
   aspect-ratio: 1 / 1;
   background: var(--acnt-color);
   border-radius: 50%;
   z-index: 0;
-  bottom: 0;
+  bottom: 10px;
   left: 50%;
   transform: translate(-45%, 5%);
 }
 
-.about-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.service-card {
+    flex: 1 1 300px;
+    max-width: 340px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.service-card h3 {
+    padding: 1rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+  .history-block,
+  .advantages-block {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .advantages-block {
+    flex-direction: row-reverse;
+    
+  }
+  .aboutImg-container,
+  .miko-container {
+    flex: 0 0 50%;
+  }
+  .description {
+    flex: 1;
+  }
+
 }
