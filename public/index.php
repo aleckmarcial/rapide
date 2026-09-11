@@ -62,36 +62,59 @@
 
     </section>
 
-    <section id="services">
-        <div>
+    <section id="services-section">
+        <div class="title">
             <h1>Our Services</h1>
         </div>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <img src="images/brakes.jpg" alt="Brakes">
-                <h3>Brakes</h3>
-            </div>
-            <div class="service-card">
-                <img src="images/oil-change.jpg" alt="Oil Change">
-                <h3>Oil Change</h3>
-            </div>
-            <div class="service-card">
-                <img src="images/tires-batteries.jpg" alt="Tires & Batteries">
-                <h3>Tires &amp; Batteries</h3>
-            </div>
-            <div class="service-card">
-                <img src="images/ac-services.jpg" alt="AC Services & Repair">
-                <h3>AC Services &amp; Repair</h3>
-            </div>
-            <div class="service-card">
-                <img src="images/maintenance.jpg" alt="Maintenance">
-                <h3>Maintenance</h3>
-            </div>
-            <div class="service-card">
-                <img src="images/packages.jpg" alt="Packages">
-                <h3>Packages</h3>
-            </div>
+        <div class="services-container">
+            <a href="#" class="service-card">
+                <img src="img/brakes.png" alt="Brakes">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>Brakes</span>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <img src="img/oil-change.png" alt="Oil Change">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>Oil Change</span>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <img src="img/tires-batteries.png" alt="Tires & Batteries">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>Tires & Batteries</span>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <img src="img/ac-services.png" alt="AC Services & Repair">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>AC Services &amp; Repair</span>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <img src="img/maintenance.png" alt="Maintenance">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>Maintenance</span>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <img src="img/packages.png" alt="Packages">
+                <div class="service-card-overlay"></div>
+                <div class="card-content">
+                    <span>Packages</span>
+                </div>
+            </a>
         </div>
     </section>
 
