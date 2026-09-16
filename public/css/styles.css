@@ -72,7 +72,7 @@ main.dimmed:after {
 
   h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 6vw, 3.5rem);
+    font-size: clamp(1.6rem, 6vw, 3.5rem);
     font-weight: 800;
     white-space: nowrap;
     margin-bottom: 0.5rem;
@@ -80,7 +80,7 @@ main.dimmed:after {
 
   p {
     font-family: var(--font-body);
-    font-size: clamp(0.8rem, 2vw, 1.3rem);
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
     white-space: nowrap;
   }
 }
@@ -146,22 +146,22 @@ main.dimmed:after {
 }
 
 .description {
-
-  h1 {
-    font-size: clamp(1.6rem, 6vw, 3.5rem);
+  h2 {
+    font-size: clamp(1.5rem, 1rem + 2.2vw, 3.5rem);
     font-family: var(--font-heading);
+    font-weight: 800;
     position: relative;
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
   }
 
-  h1::after {
+  h2::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50%;
+    width: 60%;
     height: 6px;
     background-color: var(--acnt-color);
     border-radius: 3px 8px 5px 10px / 4px 6px 3px 7px;
@@ -195,13 +195,11 @@ main.dimmed:after {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 5vw, 2.2rem);
   font-weight: 700;
-  color: var(--dark-bg);
 }
 
 .stat-label {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: #6b6b6b;
 }
 
 .advantage-list {
@@ -245,7 +243,6 @@ main.dimmed:after {
   content: "";
   position: absolute;
   width: 80%;
-
   aspect-ratio: 1 / 1;
   background: var(--acnt-color);
   border-radius: 50%;
@@ -255,47 +252,43 @@ main.dimmed:after {
   transform: translate(-45%, 5%);
 }
 
-.title{
+.services-title {
   margin-top: 1rem;
+  font-size: clamp(1.6rem, 6vw, 3.5rem);
   font-family: var(--font-heading);
+  font-weight: 800;
   text-align: center;
-}
-
-.services-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  color: var(--rapide-yellow);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    0 0 1px rgba(0, 0, 0, 0.6);
 }
 
 .services-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  max-width: 1800px;
   gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .services-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  margin: 1rem auto;
+  padding: 0 16px;
 }
 
 .service-card {
-  position: relative;        /* anchors overlay + content inside the card */
-  aspect-ratio: 1 / 1;       /* matches your brakes.png (1254x1254) */
+  position: relative; /* anchors overlay + content inside the card */
+  aspect-ratio: 1 / 1; /* matches your brakes.png (1254x1254) */
   border-radius: 8px;
   overflow: hidden;
   display: block;
   text-decoration: none;
-  background: #111;          /* fills any letterbox gaps if an image isn't perfectly square */
+  
 }
 
 .service-card img {
   width: 100%;
   height: 100%;
-  object-fit: contain;       /* shows the FULL image, no cropping */
+  object-fit: contain; /* shows the FULL image, no cropping */
   display: block;
 }
 
@@ -304,11 +297,11 @@ main.dimmed:after {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.15) 45%,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
     transparent 70%
   );
-  pointer-events: none;      /* lets clicks pass through to the <a> underneath */
+  pointer-events: none; /* lets clicks pass through to the <a> underneath */
 }
 
 .card-content {
@@ -320,6 +313,7 @@ main.dimmed:after {
 
 .card-content span {
   color: white;
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
 }
@@ -332,7 +326,7 @@ main.dimmed:after {
     padding-inline: 3rem;
   }
 
-  .description{
+  .description {
     padding-inline: 1.5rem;
   }
 
@@ -349,5 +343,13 @@ main.dimmed:after {
 
   .advantage-list {
     margin-top: 1rem;
+  }
+
+  .services-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-content span {
+    font-size: 1.3rem;
   }
 }

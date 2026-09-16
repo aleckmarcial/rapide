@@ -19,7 +19,7 @@
                 <img src="img/rapide.jpg" alt="Rapide auto service about">
             </div>
             <div class="description">
-                <h1>Our History</h1>
+                <h2>Our History</h2>
                 <p>Rapidé is born of a joint venture with Midas International, the largest auto service center chain in the world. That partnership gave us the basis for our systems and procedures — the foundation of what we now call the Rapidé Way.</p>
 
                 <div class="stats-row">
@@ -40,7 +40,7 @@
                 <img src="img/miko2.png" alt="Rapide mascot holding a wrench">
             </div>
             <div class="description">
-                <h1>Our Advantages</h1>
+                <h2>Our Advantages</h2>
                 <p>Rapidé's quality assurance comes down to one phrase: CASA-quality services at affordable prices.</p>
 
                 <ul class="advantage-list">
@@ -63,8 +63,8 @@
     </section>
 
     <section id="services-section">
-        <div class="title">
-            <h1>Our Services</h1>
+        <div>
+            <h2 class="services-title">Our Services</h2>
         </div>
 
         <div class="services-container">
@@ -119,7 +119,6 @@
     </section>
 
     <section>
-
     </section>
 </main>
 
