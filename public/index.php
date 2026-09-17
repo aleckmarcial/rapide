@@ -17,6 +17,7 @@
         <div class="history-block">
             <div class="aboutImg-container">
                 <img src="img/rapide.jpg" alt="Rapide auto service about">
+                <p class="img-caption">Our shop on Chino Roces Avenue, Makati</p>
             </div>
             <div class="description">
                 <h2>Our History</h2>
@@ -62,6 +63,35 @@
 
     </section>
 
+    <div class="carousel">
+            <div class="track">
+                <div class="track-group">
+                    <div class="brand-logo"><img src="img/bmw.png" alt="BMW"></div>
+                    <div class="brand-logo"><img src="img/chevrolet.png" alt="Chevrolet"></div>
+                    <div class="brand-logo"><img src="img/ford.png" alt="Ford"></div>
+                    <div class="brand-logo"><img src="img/honda.png" alt="Honda"></div>
+                    <div class="brand-logo"><img src="img/hyundai.png" alt="Hyundai"></div>
+                    <div class="brand-logo"><img src="img/kia.png" alt="Kia"></div>
+                    <div class="brand-logo"><img src="img/mazda.png" alt="Mazda"></div>
+                    <div class="brand-logo"><img src="img/mitsubishi.png" alt="Mitsubishi"></div>
+                    <div class="brand-logo"><img src="img/subaru.png" alt="Subaru"></div>
+                    <div class="brand-logo"><img src="img/toyota.png" alt="Toyota"></div>
+                </div>
+                <div class="track-group" aria-hidden="true">
+                    <div class="brand-logo"><img src="img/bmw.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/chevrolet.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/ford.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/honda.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/hyundai.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/kia.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/mazda.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/mitsubishi.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/subaru.png" alt=""></div>
+                    <div class="brand-logo"><img src="img/toyota.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+
     <section id="services-section">
         <div>
             <h2 class="services-title">Our Services</h2>
@@ -71,55 +101,67 @@
             <a href="#" class="service-card">
                 <img src="img/brakes.png" alt="Brakes">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>Brakes</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
 
             <a href="#" class="service-card">
                 <img src="img/oil-change.png" alt="Oil Change">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>Oil Change</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
 
             <a href="#" class="service-card">
                 <img src="img/tires-batteries.png" alt="Tires & Batteries">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>Tires & Batteries</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
 
             <a href="#" class="service-card">
                 <img src="img/ac-services.png" alt="AC Services & Repair">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>AC Services &amp; Repair</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
 
             <a href="#" class="service-card">
                 <img src="img/maintenance.png" alt="Maintenance">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>Maintenance</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
 
             <a href="#" class="service-card">
                 <img src="img/packages.png" alt="Packages">
                 <div class="service-card-overlay"></div>
+                <div class="service-card-fill"></div>
                 <div class="card-content">
                     <span>Packages</span>
                 </div>
+                <span class="card-cta">Book Now</span>
             </a>
         </div>
     </section>
 
-    <section>
-    </section>
+    <!-- <section>
+    </section> -->
 </main>
 
 <?php include 'includes/footer.php'; ?>

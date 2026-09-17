@@ -13,8 +13,7 @@
   --color-error: #c74242;
 }
 
-main {
-  /* dimmed the whole screen when hamburger menu is active */
+main { /* dimmed the whole screen when hamburger menu is active */
   transition: opacity 0.3s ease;
   position: relative;
 }
@@ -27,8 +26,8 @@ main.dimmed:after {
   background: rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
-.hero-container {
-  /* whole hero section */
+
+.hero-container { /* whole hero section */
   position: relative;
   width: 100%;
   height: 100dvh;
@@ -43,13 +42,11 @@ main.dimmed:after {
   }
 }
 
-.hero-container:hover img {
-  /* image zoom effect */
+.hero-container:hover img { /* image zoom effect */
   transform: scale(1.08);
 }
 
-.hero-container::after {
-  /* dimmed the hero section img */
+.hero-container::after { /* dimmed the hero section img */
   content: "";
   position: absolute;
   top: 0;
@@ -60,8 +57,7 @@ main.dimmed:after {
   z-index: 1;
 }
 
-.hero-text {
-  /* hero text properties */
+.hero-text { /* hero text properties */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -85,14 +81,14 @@ main.dimmed:after {
   }
 }
 
-.hero-btn {
-  /* hero button properties */
+.hero-btn { /* hero button properties */
   display: inline-block;
   margin-top: 1.6rem;
   padding: 0.8rem 1rem;
   background-color: hsl(45, 100%, 51%);
   color: #1a1a1a;
   font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
   font-weight: 600;
   text-decoration: none;
   letter-spacing: 0.3px;
@@ -112,7 +108,12 @@ main.dimmed:after {
   }
 }
 
-/* !must remove unecessary css like #about max-width and margine inline */
+/* ---------------------about section---------------------- */
+
+#hero-section, #about-section, #services-section{
+  background-color: #fff9eb;
+  padding-bottom: 2rem;
+}
 
 .history-block {
   display: flex;
@@ -126,8 +127,7 @@ main.dimmed:after {
   flex-direction: column;
   gap: 1.5rem;
   padding: 10px;
-  background-color: var(--warm-offwhite);
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .aboutImg-container {
@@ -138,11 +138,28 @@ main.dimmed:after {
     height: 100%;
     object-fit: contain;
     display: block;
+    border-radius: 12px;
     box-shadow:
       0 2px 4px rgba(32, 33, 36, 0.03),
       0 12px 24px rgba(32, 33, 36, 0.06),
       0 32px 64px rgba(32, 33, 36, 0.08);
   }
+}
+
+.img-caption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #6b6b6b;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+.img-caption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #6b6b6b;
+  text-align: center;
+  margin-top: 0.75rem;
 }
 
 .description {
@@ -184,6 +201,7 @@ main.dimmed:after {
   margin-top: 1.2rem;
   padding-top: 1.2rem;
   border-top: 2px solid var(--acnt-color);
+  
 }
 
 .stat {
@@ -213,7 +231,7 @@ main.dimmed:after {
 .advantage-list li {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   font-family: var(--font-body);
   font-weight: 500;
   color: #2b2b2b;
@@ -221,7 +239,15 @@ main.dimmed:after {
 }
 
 .advantage-icon {
-  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: clamp(2.4rem, 5vw, 3rem);
+  height: clamp(2.4rem, 5vw, 3rem);
+  border-radius: 50%;
+  background-color: var(--acnt-color);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
 }
 
 .miko-container {
@@ -229,6 +255,7 @@ main.dimmed:after {
   display: flex;
   justify-content: center;
   position: relative;
+  
 
   img {
     width: 90%;
@@ -252,8 +279,80 @@ main.dimmed:after {
   transform: translate(-45%, 5%);
 }
 
+/*------------------------- sevices section------------------------ */
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--dark-bg);
+  padding-block: 1.75rem;
+  position: relative;
+}
+ 
+.carousel::before,
+.carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+ 
+.carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--dark-bg), transparent);
+}
+ 
+.carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--dark-bg), transparent);
+}
+ 
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll-track 28s linear infinite;
+}
+ 
+.track-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  padding-right: clamp(2.5rem, 6vw, 4.5rem);
+}
+ 
+.brand-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.brand-logo img {
+  height: clamp(28px, 4vw, 42px);
+  width: auto;
+  object-fit: contain;
+}
+ 
+@keyframes scroll-track {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
 .services-title {
-  margin-top: 1rem;
+  padding: 1rem;
   font-size: clamp(1.6rem, 6vw, 3.5rem);
   font-family: var(--font-heading);
   font-weight: 800;
@@ -269,9 +368,9 @@ main.dimmed:after {
 .services-container {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 1800px;
+  max-width: 1500px;
   gap: 20px;
-  margin: 1rem auto;
+  margin: auto;
   padding: 0 16px;
 }
 
@@ -304,6 +403,21 @@ main.dimmed:after {
   pointer-events: none; /* lets clicks pass through to the <a> underneath */
 }
 
+.service-card-fill { /* hover opacity effect */
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  pointer-events: none;
+}
+
+.service-card:hover .service-card-fill,
+.service-card:focus-visible .service-card-fill {
+  transform: scaleX(1);
+}
+
 .card-content {
   position: absolute;
   bottom: 16px;
@@ -314,16 +428,43 @@ main.dimmed:after {
 .card-content span {
   color: white;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.service-card:hover .card-content span,
+.service-card:focus-visible .card-content span {
+  opacity: 0;
+}
+
+.card-cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  padding: 0.6rem 1.1rem;
+  background-color: var(--rapide-yellow);
+  color: #1a1a1a;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.25s ease 0.15s, transform 0.25s ease 0.15s;
+}
+
+.service-card:hover .card-cta,
+.service-card:focus-visible .card-cta {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 @media (min-width: 768px) {
   .history-block {
     flex-direction: row;
     align-items: center;
-    margin-block: 8rem;
-    padding-inline: 3rem;
+    padding: 3rem;
   }
 
   .description {
@@ -349,7 +490,4 @@ main.dimmed:after {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .card-content span {
-    font-size: 1.3rem;
-  }
 }
