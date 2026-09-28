@@ -1,5 +1,10 @@
-<?php $pageTitle = "Home | Rapide"; ?>
-<?php include 'includes/header.php'; ?>
+<?php
+$pageTitle = "Home | Rapide";
+require_once __DIR__ . '/../src/config/dbcon.php';
+require_once __DIR__ . '/../src/functions/branches.php';
+include 'includes/header.php';
+?>
+
 
 <main>
     <section id="hero-section">
@@ -64,33 +69,33 @@
     </section>
 
     <div class="carousel">
-            <div class="track">
-                <div class="track-group">
-                    <div class="brand-logo"><img src="img/bmw.png" alt="BMW"></div>
-                    <div class="brand-logo"><img src="img/chevrolet.png" alt="Chevrolet"></div>
-                    <div class="brand-logo"><img src="img/ford.png" alt="Ford"></div>
-                    <div class="brand-logo"><img src="img/honda.png" alt="Honda"></div>
-                    <div class="brand-logo"><img src="img/hyundai.png" alt="Hyundai"></div>
-                    <div class="brand-logo"><img src="img/kia.png" alt="Kia"></div>
-                    <div class="brand-logo"><img src="img/mazda.png" alt="Mazda"></div>
-                    <div class="brand-logo"><img src="img/mitsubishi.png" alt="Mitsubishi"></div>
-                    <div class="brand-logo"><img src="img/subaru.png" alt="Subaru"></div>
-                    <div class="brand-logo"><img src="img/toyota.png" alt="Toyota"></div>
-                </div>
-                <div class="track-group" aria-hidden="true">
-                    <div class="brand-logo"><img src="img/bmw.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/chevrolet.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/ford.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/honda.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/hyundai.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/kia.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/mazda.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/mitsubishi.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/subaru.png" alt=""></div>
-                    <div class="brand-logo"><img src="img/toyota.png" alt=""></div>
-                </div>
+        <div class="track">
+            <div class="track-group">
+                <div class="brand-logo"><img src="img/bmw.png" alt="BMW"></div>
+                <div class="brand-logo"><img src="img/chevrolet.png" alt="Chevrolet"></div>
+                <div class="brand-logo"><img src="img/ford.png" alt="Ford"></div>
+                <div class="brand-logo"><img src="img/honda.png" alt="Honda"></div>
+                <div class="brand-logo"><img src="img/hyundai.png" alt="Hyundai"></div>
+                <div class="brand-logo"><img src="img/kia.png" alt="Kia"></div>
+                <div class="brand-logo"><img src="img/mazda.png" alt="Mazda"></div>
+                <div class="brand-logo"><img src="img/mitsubishi.png" alt="Mitsubishi"></div>
+                <div class="brand-logo"><img src="img/subaru.png" alt="Subaru"></div>
+                <div class="brand-logo"><img src="img/toyota.png" alt="Toyota"></div>
+            </div>
+            <div class="track-group" aria-hidden="true">
+                <div class="brand-logo"><img src="img/bmw.png" alt=""></div>
+                <div class="brand-logo"><img src="img/chevrolet.png" alt=""></div>
+                <div class="brand-logo"><img src="img/ford.png" alt=""></div>
+                <div class="brand-logo"><img src="img/honda.png" alt=""></div>
+                <div class="brand-logo"><img src="img/hyundai.png" alt=""></div>
+                <div class="brand-logo"><img src="img/kia.png" alt=""></div>
+                <div class="brand-logo"><img src="img/mazda.png" alt=""></div>
+                <div class="brand-logo"><img src="img/mitsubishi.png" alt=""></div>
+                <div class="brand-logo"><img src="img/subaru.png" alt=""></div>
+                <div class="brand-logo"><img src="img/toyota.png" alt=""></div>
             </div>
         </div>
+    </div>
 
     <section id="services-section">
         <div>
@@ -160,8 +165,26 @@
         </div>
     </section>
 
-    <!-- <section>
-    </section> -->
+    <section id="branch-locator">
+        <div class="branch-bg">
+            <h2 class="branch-title">Branch Locator</h2>
+            <div class="search-bar">
+                <img src="img/icons/search.svg" alt="">
+                <input type="text" id="search-bar" placeholder="Find a branch near you" aria-label="Search branches">
+                <button type="button" id="clear-search" aria-label="Clear search">
+                    <img src="img/icons/x.svg" alt="">
+                </button>
+            </div>
+
+            <div class="branch-container" id="branch-list">
+                <?php renderBranchCards(getBranches($conn, '', 1)); ?>
+            </div>
+
+            <div id="branch-pagination">
+                <?php renderPagination(1, (int) ceil(countBranches($conn) / BRANCHES_PER_PAGE)); ?>
+            </div>
+        </div>
+    </section>
 </main>
 
 <?php include 'includes/footer.php'; ?>

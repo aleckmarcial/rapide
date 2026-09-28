@@ -110,8 +110,11 @@ main.dimmed:after {
 
 /* ---------------------about section---------------------- */
 
-#hero-section, #about-section, #services-section{
-  background-color: #fff9eb;
+#hero-section,
+#about-section,
+#services-section,
+#branch-locator {
+  background-color: #fff9eb; /* FAF7EF */
   padding-bottom: 2rem;
 }
 
@@ -189,7 +192,6 @@ main.dimmed:after {
     font-size: clamp(1rem, 2vw, 1.8rem);
     font-family: var(--font-body);
     padding-top: 10px;
-    line-height: 20px;
     text-align: left;
     line-height: 1.7;
   }
@@ -201,7 +203,6 @@ main.dimmed:after {
   margin-top: 1.2rem;
   padding-top: 1.2rem;
   border-top: 2px solid var(--acnt-color);
-  
 }
 
 .stat {
@@ -255,7 +256,6 @@ main.dimmed:after {
   display: flex;
   justify-content: center;
   position: relative;
-  
 
   img {
     width: 90%;
@@ -279,7 +279,7 @@ main.dimmed:after {
   transform: translate(-45%, 5%);
 }
 
-/*------------------------- sevices section------------------------ */
+/*------------------------- carousel section------------------------ */
 
 .carousel {
   width: 100%;
@@ -288,7 +288,7 @@ main.dimmed:after {
   padding-block: 1.75rem;
   position: relative;
 }
- 
+
 .carousel::before,
 .carousel::after {
   content: "";
@@ -299,43 +299,43 @@ main.dimmed:after {
   z-index: 2;
   pointer-events: none;
 }
- 
+
 .carousel::before {
   left: 0;
   background: linear-gradient(to right, var(--dark-bg), transparent);
 }
- 
+
 .carousel::after {
   right: 0;
   background: linear-gradient(to left, var(--dark-bg), transparent);
 }
- 
+
 .track {
   display: flex;
   width: max-content;
   animation: scroll-track 28s linear infinite;
 }
- 
+
 .track-group {
   display: flex;
   align-items: center;
   gap: clamp(2.5rem, 6vw, 4.5rem);
   padding-right: clamp(2.5rem, 6vw, 4.5rem);
 }
- 
+
 .brand-logo {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
- 
+
 .brand-logo img {
   height: clamp(28px, 4vw, 42px);
   width: auto;
   object-fit: contain;
 }
- 
+
 @keyframes scroll-track {
   from {
     transform: translateX(0);
@@ -344,12 +344,14 @@ main.dimmed:after {
     transform: translateX(-50%);
   }
 }
- 
+
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
   }
 }
+
+/*------------------------- sevices section------------------------ */
 
 .services-title {
   padding: 1rem;
@@ -381,7 +383,6 @@ main.dimmed:after {
   overflow: hidden;
   display: block;
   text-decoration: none;
-  
 }
 
 .service-card img {
@@ -403,7 +404,8 @@ main.dimmed:after {
   pointer-events: none; /* lets clicks pass through to the <a> underneath */
 }
 
-.service-card-fill { /* hover opacity effect */
+.service-card-fill {
+  /* hover opacity effect */
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.75);
@@ -451,13 +453,182 @@ main.dimmed:after {
   font-weight: 600;
   border-radius: 6px;
   opacity: 0;
-  transition: opacity 0.25s ease 0.15s, transform 0.25s ease 0.15s;
+  transition:
+    opacity 0.25s ease 0.15s,
+    transform 0.25s ease 0.15s;
 }
 
 .service-card:hover .card-cta,
 .service-card:focus-visible .card-cta {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+}
+
+/*------------------------- branch locator section------------------------ */
+
+#branch-locator {
+  padding: 16px; /* breathing room so the rounded bg doesn't touch screen edges */
+}
+
+.branch-bg {
+  background-color: #fff0b8;
+  max-width: 1500px;
+  margin: auto;
+  padding: 24px 16px 32px;
+  border-radius: 2rem;
+}
+
+.branch-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 6vw, 3.5rem);
+  margin-bottom: 16px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 24px;
+  padding: 10px 16px;
+  background-color: #fff;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+
+  &:focus-within:focus-within {
+    border-color: #000;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.search-bar img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0; /* lets the input shrink inside flex on small screens */
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px+ stops iOS Safari from zooming on focus */
+  color: #222;
+}
+
+.search-bar input::placeholder {
+  color: #777;
+}
+
+#clear-search {
+    visibility: hidden;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#clear-search.visible {
+    visibility: visible;
+}
+
+.no-results {
+    color: #f80404; /* adjust to fit your .branch-bg background */
+    grid-column: 1 / -1; /* span every column */
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+
+}
+
+.branch-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 350px;
+  margin: auto;
+}
+
+.branch-card {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 200;
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .branch-name {
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+}
+
+#branch-pagination {
+    width: 100%;
+    max-width: 1200px;   /* use the same max-width as .branch-container */
+    margin: 24px auto 0; /* auto centers it, just like the cards */
+    padding: 0;          /* match .branch-container's horizontal padding, if it has any */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.page-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #eee;
+}
+
+.page-btn.active {
+    background: #c8102e; /* your brand color */
+    border-color: #c8102e;
+    color: #fff;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.page-ellipsis {
+    padding: 0 4px;
+    color: #fc0000; /* adjust to fit your .branch-bg background */
 }
 
 @media (min-width: 768px) {
@@ -490,4 +661,49 @@ main.dimmed:after {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  #branch-locator {
+    padding: 24px;
+  }
+
+  .branch-bg {
+    padding: 40px 32px 48px;
+    border-radius: 2.5rem;
+  }
+
+  .branch-title {
+    margin-bottom: 24px;
+  }
+
+  .search-bar {
+    padding: 12px 20px;
+    margin-bottom: 32px;
+  }
+
+  .branch-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    gap: 24px;
+  }
+}
+
+/* ---------------------------- Desktop -------------------------- */
+
+@media (min-width: 1024px) {
+  #branch-locator {
+    padding: 32px 48px;
+  }
+
+  .branch-bg {
+    padding: 56px 48px 64px;
+    border-radius: 3.2rem;
+  }
+
+  .branch-container {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+
+  .branch-card {
+    padding: 14px;
+  }
 }

@@ -21,4 +21,54 @@ document.addEventListener('click', (event) => {
     }
 });
 
+//search bar
+const searchBar = document.getElementById("search-bar");
+const clearSearch = document.getElementById("clear-search");
+const branchList = document.getElementById("branch-list");
+const pagination = document.getElementById("branch-pagination");
 
+if (searchBar && clearSearch && branchList && pagination) {
+    let debounceTimer;
+    let currentQuery = "";
+
+    async function loadBranches(query, page = 1) {
+        try {
+            const response = await fetch(
+                `search_branches.php?q=${encodeURIComponent(query)}&page=${page}`
+            );
+            const data = await response.json();
+            branchList.innerHTML = data.cards;
+            pagination.innerHTML = data.pagination;
+        } catch (error) {
+            console.error("Search failed:", error);
+        }
+    }
+
+    searchBar.addEventListener("input", () => {
+        clearSearch.classList.toggle("visible", searchBar.value.length > 0);
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            currentQuery = searchBar.value.trim();
+            loadBranches(currentQuery, 1); // new search always starts at page 1
+        }, 300);
+    });
+
+    clearSearch.addEventListener("click", () => {
+        searchBar.value = "";
+        currentQuery = "";
+        clearSearch.classList.remove("visible");
+        searchBar.focus();
+        loadBranches("", 1);
+    });
+
+    // One listener handles every page button, including ones added later
+    pagination.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-page]");
+        if (!button || button.disabled) return;
+
+        loadBranches(currentQuery, Number(button.dataset.page));
+        document.getElementById("branch-locator").scrollIntoView({ behavior: "smooth" });
+    });
+}
+//search filter
