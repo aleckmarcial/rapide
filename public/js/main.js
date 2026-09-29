@@ -71,4 +71,7 @@ if (searchBar && clearSearch && branchList && pagination) {
         document.getElementById("branch-locator").scrollIntoView({ behavior: "smooth" });
     });
 }
-//search filter
+
+//AOS
+// recalculate positions after images load, since they change layout heights
+window.addEventListener('load', () => AOS.refresh());

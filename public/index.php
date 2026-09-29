@@ -11,29 +11,31 @@ include 'includes/header.php';
         <div class="hero-container">
             <img src="img/bg.png" alt="Rapide auto service shop front">
             <div class="hero-text">
-                <h1>Experience the Rapide Way!</h1>
-                <p>CASA-quality services at affordable prices.</p>
-                <a href="#" class="hero-btn">Book Now</a>
+                <div data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Experience the Rapide Way!</h1>
+                    <p>CASA-quality services at affordable prices.</p>
+                    <a href="#" class="hero-btn">Book Now</a>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="about-section">
         <div class="history-block">
-            <div class="aboutImg-container">
+            <div class="aboutImg-container" data-aos="fade-right">
                 <img src="img/rapide.jpg" alt="Rapide auto service about">
                 <p class="img-caption">Our shop on Chino Roces Avenue, Makati</p>
             </div>
-            <div class="description">
+            <div class="description" data-aos="fade-left">
                 <h2>Our History</h2>
                 <p>Rapidé is born of a joint venture with Midas International, the largest auto service center chain in the world. That partnership gave us the basis for our systems and procedures — the foundation of what we now call the Rapidé Way.</p>
 
                 <div class="stats-row">
-                    <div class="stat">
+                    <div class="stat" data-aos="zoom-in" data-aos-delay="0">
                         <span class="stat-number">20+</span>
                         <span class="stat-label">Years of Service</span>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-aos="zoom-in" data-aos-delay="150">
                         <span class="stat-number">CASA</span>
                         <span class="stat-label">Quality Standard</span>
                     </div>
@@ -42,7 +44,7 @@ include 'includes/header.php';
         </div>
 
         <div class="advantages-block">
-            <div class="miko-container">
+            <div class="miko-container" data-aos="fade-right">
                 <img src="img/miko2.png" alt="Rapide mascot holding a wrench">
             </div>
             <div class="description">
@@ -50,15 +52,15 @@ include 'includes/header.php';
                 <p>Rapidé's quality assurance comes down to one phrase: CASA-quality services at affordable prices.</p>
 
                 <ul class="advantage-list">
-                    <li>
+                    <li data-aos="fade-up" data-aos-delay="0">
                         <span class="advantage-icon" aria-hidden="true">🔧</span>
                         Skilled, certified technicians
                     </li>
-                    <li>
+                    <li data-aos="fade-up" data-aos-delay="150">
                         <span class="advantage-icon" aria-hidden="true">⚙️</span>
                         State-of-the-art equipment
                     </li>
-                    <li>
+                    <li data-aos="fade-up" data-aos-delay="300">
                         <span class="advantage-icon" aria-hidden="true">💰</span>
                         Affordable, transparent pricing
                     </li>
@@ -99,7 +101,7 @@ include 'includes/header.php';
 
     <section id="services-section">
         <div>
-            <h2 class="services-title">Our Services</h2>
+            <h2 class="services-title" data-aos="fade-down">Our Services</h2>
         </div>
 
         <div class="services-container">

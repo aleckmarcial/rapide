@@ -10,7 +10,7 @@
                 <h2>Get in touch with Us!</h2>
                 <div class="social-links">
                     <a href="https://www.facebook.com/RapideAutoServicePH" target="_blank">
-                        <img src="img/icons/facebook.svg" alt="facebook" >
+                        <img src="img/icons/facebook.svg" alt="facebook">
                         <span>Rapidé</span>
                     </a>
                     <a href="https://www.instagram.com/rapideautoph" target="_blank">
@@ -53,6 +53,13 @@
 
 
     <script src="js/main.js"></script>
+    <script src="vendor/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
     </body>
 
     </html>

@@ -1,5 +1,5 @@
 <?php
-const BRANCHES_PER_PAGE = 12;
+const BRANCHES_PER_PAGE = 9;
 
 function countBranches(mysqli $conn, string $search = ''): int
 {
@@ -45,6 +45,11 @@ function renderBranchCards(array $branches): void
             <span class="address"><?= htmlspecialchars($branch['address'] ?? 'Address not available') ?></span>
             <span class="contact"><?= htmlspecialchars($branch['contact_number'] ?? 'No contact number listed') ?></span>
             <span class="email"><?= htmlspecialchars($branch['email'] ?? 'No email listed') ?></span>
+            <div class="map-links">
+                <a href=""><img src="img/icons/apple-maps.png" alt=""></a>
+                <a href=""><img src="img/icons/waze.png" alt=""></a>
+                <a href=""><img src="img/icons/google-maps.png" alt=""></a>
+            </div>
         </div>
     <?php endforeach;
 }

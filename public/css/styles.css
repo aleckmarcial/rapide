@@ -13,9 +13,11 @@
   --color-error: #c74242;
 }
 
-main { /* dimmed the whole screen when hamburger menu is active */
+main {
+  /* dimmed the whole screen when hamburger menu is active */
   transition: opacity 0.3s ease;
   position: relative;
+  overflow-x: hidden;
 }
 
 main.dimmed:after {
@@ -27,7 +29,8 @@ main.dimmed:after {
   z-index: 10;
 }
 
-.hero-container { /* whole hero section */
+.hero-container {
+  /* whole hero section */
   position: relative;
   width: 100%;
   height: 100dvh;
@@ -42,11 +45,13 @@ main.dimmed:after {
   }
 }
 
-.hero-container:hover img { /* image zoom effect */
+.hero-container:hover img {
+  /* image zoom effect */
   transform: scale(1.08);
 }
 
-.hero-container::after { /* dimmed the hero section img */
+.hero-container::after {
+  /* dimmed the hero section img */
   content: "";
   position: absolute;
   top: 0;
@@ -57,11 +62,14 @@ main.dimmed:after {
   z-index: 1;
 }
 
-.hero-text { /* hero text properties */
+.hero-text {
+  /* hero text properties */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -100%);
+  inset: 0; /* top/right/bottom/left: 0 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: var(--warm-offwhite);
   z-index: 2;
@@ -81,7 +89,8 @@ main.dimmed:after {
   }
 }
 
-.hero-btn { /* hero button properties */
+.hero-btn {
+  /* hero button properties */
   display: inline-block;
   margin-top: 1.6rem;
   padding: 0.8rem 1rem;
@@ -529,24 +538,23 @@ main.dimmed:after {
 }
 
 #clear-search {
-    visibility: hidden;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+  visibility: hidden;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 #clear-search.visible {
-    visibility: visible;
+  visibility: visible;
 }
 
 .no-results {
-    color: #f80404; /* adjust to fit your .branch-bg background */
-    grid-column: 1 / -1; /* span every column */
-    text-align: center;
-    font-family: var(--font-body);
-    font-size: 1.5rem;
-
+  color: #f80404; /* adjust to fit your .branch-bg background */
+  grid-column: 1 / -1; /* span every column */
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
 }
 
 .branch-container {
@@ -584,51 +592,97 @@ main.dimmed:after {
   }
 }
 
+.map-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.map-links a {
+  display: block;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* higher specificity than .branch-card img, so these win */
+.map-links a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.map-links a:hover,
+.map-links a:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.map-links a:focus-visible {
+  outline: 2px solid #f5b800;
+  outline-offset: 2px;
+}
+
 #branch-pagination {
-    width: 100%;
-    max-width: 1200px;   /* use the same max-width as .branch-container */
-    margin: 24px auto 0; /* auto centers it, just like the cards */
-    padding: 0;          /* match .branch-container's horizontal padding, if it has any */
-    box-sizing: border-box;
-    display: flex;
-    justify-content: flex-end;
+  width: 100%;
+  max-width: 1200px; /* use the same max-width as .branch-container */
+  margin: 24px auto 0; /* auto centers it, just like the cards */
+  padding: 0; /* match .branch-container's horizontal padding, if it has any */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .pagination {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
 }
 
 .page-btn {
-    min-width: 36px;
-    height: 36px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #fff;
-    font: inherit;
-    cursor: pointer;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
 }
 
 .page-btn:hover:not(:disabled) {
-    background: #eee;
+  background: #eee;
 }
 
 .page-btn.active {
-    background: #c8102e; /* your brand color */
-    border-color: #c8102e;
-    color: #fff;
+  background: #c8102e; /* your brand color */
+  border-color: #c8102e;
+  color: #fff;
 }
 
 .page-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .page-ellipsis {
-    padding: 0 4px;
-    color: #fc0000; /* adjust to fit your .branch-bg background */
+  padding: 0 4px;
+  color: #fc0000; /* adjust to fit your .branch-bg background */
 }
 
 @media (min-width: 768px) {
@@ -683,6 +737,15 @@ main.dimmed:after {
     grid-template-columns: repeat(2, 1fr);
     max-width: 800px;
     gap: 24px;
+  }
+
+  .map-links {
+    gap: 1rem;
+  }
+
+  .map-links a {
+    width: 48px;
+    height: 48px;
   }
 }
 
