@@ -1,24 +1,28 @@
 // Open menu when hamburger clicked
 const hamburger = document.getElementById(`hamburger-btn`);
 const navlinks = document.querySelector(`.navlinks`);
-const mainContent = document.querySelector('main');
+const mainContent = document.querySelector("main");
 
 hamburger.addEventListener(`click`, () => {
-    navlinks.classList.toggle(`active`);
-    hamburger.classList.toggle(`open`);
-    mainContent.classList.toggle('dimmed');
+  navlinks.classList.toggle(`active`);
+  hamburger.classList.toggle(`open`);
+  mainContent.classList.toggle("dimmed");
 });
 
 // Close menu when clicked outside
-document.addEventListener('click', (event) => {
-    const clickedInsideMenu = navlinks.contains(event.target);
-    const clickedHamburger =  hamburger.contains(event.target);
+document.addEventListener("click", (event) => {
+  const clickedInsideMenu = navlinks.contains(event.target);
+  const clickedHamburger = hamburger.contains(event.target);
 
-    if(!clickedInsideMenu && !clickedHamburger && navlinks.classList.contains(`active`)){
-        navlinks.classList.remove(`active`);
-        hamburger.classList.remove(`open`);
-        mainContent.classList.remove('dimmed');
-    }
+  if (
+    !clickedInsideMenu &&
+    !clickedHamburger &&
+    navlinks.classList.contains(`active`)
+  ) {
+    navlinks.classList.remove(`active`);
+    hamburger.classList.remove(`open`);
+    mainContent.classList.remove("dimmed");
+  }
 });
 
 //search bar
@@ -28,50 +32,54 @@ const branchList = document.getElementById("branch-list");
 const pagination = document.getElementById("branch-pagination");
 
 if (searchBar && clearSearch && branchList && pagination) {
-    let debounceTimer;
-    let currentQuery = "";
+  let debounceTimer;
+  let currentQuery = "";
 
-    async function loadBranches(query, page = 1) {
-        try {
-            const response = await fetch(
-                `search_branches.php?q=${encodeURIComponent(query)}&page=${page}`
-            );
-            const data = await response.json();
-            branchList.innerHTML = data.cards;
-            pagination.innerHTML = data.pagination;
-        } catch (error) {
-            console.error("Search failed:", error);
-        }
+  async function loadBranches(query, page = 1) {
+    try {
+      const response = await fetch(
+        `search_branches.php?q=${encodeURIComponent(query)}&page=${page}`,
+      );
+      const data = await response.json();
+      branchList.innerHTML = data.cards;
+      pagination.innerHTML = data.pagination;
+
+      // animate the results only when the search has 3+ characters
+      branchList.classList.toggle("is-filtered", query.length >= 3);
+    } catch (error) {
+      console.error("Search failed:", error);
     }
+  }
+  searchBar.addEventListener("input", () => {
+    clearSearch.classList.toggle("visible", searchBar.value.length > 0);
 
-    searchBar.addEventListener("input", () => {
-        clearSearch.classList.toggle("visible", searchBar.value.length > 0);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      currentQuery = searchBar.value.trim();
+      loadBranches(currentQuery, 1); // new search always starts at page 1
+    }, 300);
+  });
 
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            currentQuery = searchBar.value.trim();
-            loadBranches(currentQuery, 1); // new search always starts at page 1
-        }, 300);
-    });
+  clearSearch.addEventListener("click", () => {
+    searchBar.value = "";
+    currentQuery = "";
+    clearSearch.classList.remove("visible");
+    searchBar.focus();
+    loadBranches("", 1);
+  });
 
-    clearSearch.addEventListener("click", () => {
-        searchBar.value = "";
-        currentQuery = "";
-        clearSearch.classList.remove("visible");
-        searchBar.focus();
-        loadBranches("", 1);
-    });
+  // One listener handles every page button, including ones added later
+  pagination.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-page]");
+    if (!button || button.disabled) return;
 
-    // One listener handles every page button, including ones added later
-    pagination.addEventListener("click", (event) => {
-        const button = event.target.closest("button[data-page]");
-        if (!button || button.disabled) return;
-
-        loadBranches(currentQuery, Number(button.dataset.page));
-        document.getElementById("branch-locator").scrollIntoView({ behavior: "smooth" });
-    });
+    loadBranches(currentQuery, Number(button.dataset.page));
+    document
+      .getElementById("branch-locator")
+      .scrollIntoView({ behavior: "smooth" });
+  });
 }
 
 //AOS
 // recalculate positions after images load, since they change layout heights
-window.addEventListener('load', () => AOS.refresh());
+window.addEventListener("load", () => AOS.refresh());
