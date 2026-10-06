@@ -25,7 +25,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-//search bar
+//search bar & pagination
 const searchBar = document.getElementById("search-bar");
 const clearSearch = document.getElementById("clear-search");
 const branchList = document.getElementById("branch-list");
@@ -83,3 +83,8 @@ if (searchBar && clearSearch && branchList && pagination) {
 //AOS
 // recalculate positions after images load, since they change layout heights
 window.addEventListener("load", () => AOS.refresh());
+
+
+
+
+

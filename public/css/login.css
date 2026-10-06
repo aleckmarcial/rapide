@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Coda:wght@400;800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --font-display: "Coda", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+  --bg-color-body: #fabc3f;
+  --dark-bg: #272829;
+  --text-color: #fee503;
+  --link-color: #a30000;
+  --mikko-width: clamp(120px, 35vw, 500px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  color: #000;
+  background-color: var(--bg-color-body);
+}
+
+/* ---------- Layout (mobile first: stacked) ---------- */
+.content-wrapper {
+  position: relative;
+  min-height: 100vh;   /* fallback for older browsers */
+  min-height: 100dvh;  /* real visible height on phones */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--dark-bg);
+
+  img {
+    display: block;
+    width: 160px;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* The login-box fills the yellow area and centers everything inside it */
+.login-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontal centering */
+  justify-content: center; /* vertical centering */
+  gap: 1.1rem;
+  padding: 2.5rem 1.5rem;
+  background: transparent;
+
+  h1 {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--dark-bg);
+  }
+}
+
+/* ---------- Inputs ---------- */
+.input-field {
+  width: min(100%, 380px);
+  padding: 1.1rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #fff;
+  caret-color: var(--bg-color-body);
+  background: var(--dark-bg);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-body);
+}
+
+.input-field:focus {
+  outline: 3px solid var(--dark-bg);
+  outline-offset: 2px;
+}
+
+/* Keep browser autofill from turning the dark field white/blue */
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px var(--dark-bg) inset;
+  caret-color: #fff;
+}
+
+/* ---------- Button ---------- */
+.submit-btn {
+  width: min(100%, 200px);
+  margin-top: 0.75rem;
+  padding: 1.1rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background: var(--dark-bg);
+  border: none;
+  border-radius: 999px; /* pill shape */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+.submit-btn:hover {
+  background: var(--bg-color-body);
+  color: var(--dark-bg);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.login-box p {
+  max-width: 280px;
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+
+  a {
+    font-weight: 600;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.mikko {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: var(--mikko-width);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Desktop & landscape tablet: side by side ---------- */
+@media (min-width: 768px) {
+  .content-wrapper {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    flex: 0 0 clamp(320px, 40vw, 600px);
+    min-height: 100vh;
+    padding: 2rem;
+
+    img {
+      width: 250px;
+    }
+  }
+
+  .login-box {
+    padding: 2rem;
+  }
+}

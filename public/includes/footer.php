@@ -53,6 +53,9 @@
 
 
     <script src="js/main.js"></script>
+    <?php if (!empty($extraJs)): ?>
+        <script src="js/<?= htmlspecialchars($extraJs) ?>"></script>
+    <?php endif; ?>
     <script src="vendor/aos/aos.js"></script>
     <script>
         AOS.init({
