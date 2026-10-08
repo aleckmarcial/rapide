@@ -1,27 +1,40 @@
-// Open menu when hamburger clicked
-const hamburger = document.getElementById(`hamburger-btn`);
-const navlinks = document.querySelector(`.navlinks`);
+const hamburger = document.getElementById("hamburger-btn");
+const menus = document.querySelectorAll(".navlinks, .menu-sidebar-actions");
 const mainContent = document.querySelector("main");
 
-hamburger.addEventListener(`click`, () => {
-  navlinks.classList.toggle(`active`);
-  hamburger.classList.toggle(`open`);
-  mainContent.classList.toggle("dimmed");
+function closeMenu() {
+  menus.forEach((menu) => menu.classList.remove("active"));
+  hamburger.classList.remove("open");
+  mainContent?.classList.remove("dimmed");
+}
+
+// Open/close menu when hamburger clicked
+hamburger.addEventListener("click", () => {
+  menus.forEach((menu) => menu.classList.toggle("active"));
+  hamburger.classList.toggle("open");
+  mainContent?.classList.toggle("dimmed");
 });
 
 // Close menu when clicked outside
 document.addEventListener("click", (event) => {
-  const clickedInsideMenu = navlinks.contains(event.target);
+  const clickedInsideMenu = [...menus].some((menu) =>
+    menu.contains(event.target)
+  );
   const clickedHamburger = hamburger.contains(event.target);
 
   if (
+    hamburger.classList.contains("open") &&
     !clickedInsideMenu &&
-    !clickedHamburger &&
-    navlinks.classList.contains(`active`)
+    !clickedHamburger
   ) {
-    navlinks.classList.remove(`active`);
-    hamburger.classList.remove(`open`);
-    mainContent.classList.remove("dimmed");
+    closeMenu();
+  }
+});
+
+// Close menu after picking a service (the popup logic handles opening the form)
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".menu-sidebar-actions [data-service]")) {
+    closeMenu();
   }
 });
 

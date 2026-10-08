@@ -7,7 +7,7 @@
   --dark-bg: #272829;
   --text-color: #fee503;
   --link-color: #a30000;
-  --mikko-width: clamp(120px, 35vw, 500px);
+  --mikko-width: clamp(120px, 32vw, 500px);
 }
 
 * {
@@ -17,7 +17,6 @@
 }
 
 body {
-  min-height: 100dvh;
   font-family: var(--font-body);
   color: #000;
   background-color: var(--bg-color-body);
@@ -26,8 +25,7 @@ body {
 /* ---------- Layout (mobile first: stacked) ---------- */
 .content-wrapper {
   position: relative;
-  min-height: 100vh;   /* fallback for older browsers */
-  min-height: 100dvh;  /* real visible height on phones */
+  min-height: 100dvh; 
   display: flex;
   flex-direction: column;
 }

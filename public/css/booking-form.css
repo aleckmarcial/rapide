@@ -1,55 +1,96 @@
-/* ---------- Mobile (default): sidebar hidden, its links live in the header menu ---------- */
-.sidebar {
+/* =========================================================
+   MOBILE (default): sidebar becomes a "SERVICES" hamburger
+   ========================================================= */
+.sidebar h2 {
+  display: none;               /* heading only on tablet/desktop */
+}
+
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+/* hamburger icon drawn with one element + two pseudo-elements */
+.burger,
+.burger::before,
+.burger::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+.burger {
+  position: relative;
+}
+.burger::before,
+.burger::after {
+  position: absolute;
+  left: 0;
+}
+.burger::before { top: -6px; }
+.burger::after  { top: 6px; }
+
+/* list is hidden until .open is added by JS */
+.service-list {
   display: none;
 }
-.sidebar a {
-  display: block;
+.sidebar.open .service-list {
+  display: flex;
+  flex-direction: column;
+}
+.service-list button {
+  text-align: left;
   padding: 10px 12px;
   text-transform: uppercase;
-  text-decoration: none;
-  color: inherit;
+  cursor: pointer;
 }
-.sidebar a:hover {
+.service-list button:hover {
   background: var(--acnt-color);
 }
 
-/* group label inside the header dropdown */
-.navlinks .nav-service-heading {
-  align-self: stretch; /* full-width divider line */
-  text-align: center;
-  margin-top: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--acnt-color);
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* form groups stack on mobile */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
-/* ---------- Tablet and up: real sidebar beside the form ---------- */
+/* =========================================================
+   TABLET AND UP: real sidebar beside the form
+   ========================================================= */
 @media (min-width: 768px) {
-  .navlinks .nav-service-item {
-    display: none;
-  }
-
   .layout {
     display: grid;
-    grid: "sidebar body" 1fr / auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "sidebar body";
     gap: 8px;
     width: 100%;
   }
 
   .sidebar {
-    display: block;
     grid-area: sidebar;
     width: 260px;
   }
-  .sidebar a {
+  .sidebar h2 {
     display: block;
-    text-transform: uppercase;
   }
+  .sidebar-toggle {
+    display: none;             /* no hamburger on larger screens */
+  }
+  .service-list {
+    display: flex;             /* always visible */
+    flex-direction: column;
+  }
+
   .body {
     grid-area: body;
   }

@@ -1,5 +1,6 @@
 <?php
-$pageTitle = "Home | Rapide";
+$pageTitle = 'Home | Rapide';
+$currentPage = "home-page";
 require_once __DIR__ . '/../src/config/dbcon.php';
 require_once __DIR__ . '/../src/functions/branches.php';
 include 'includes/header.php';

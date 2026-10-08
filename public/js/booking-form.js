@@ -1,20 +1,23 @@
-//sidebar
-const toggle = document.getElementById('sidebarToggle-btn');
 const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('sidebarOverlay');
+const toggle = sidebar.querySelector('.sidebar-toggle');
+const serviceButtons = sidebar.querySelectorAll('.service-list button');
 
-function setSidebar(open) {
-  sidebar.classList.toggle('open', open);
-  overlay.classList.toggle('show', open);
-  toggle.classList.toggle('active', open);
-  toggle.setAttribute('aria-expanded', open);
+function setOpen(isOpen) {
+  sidebar.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', String(isOpen));
 }
 
-toggle.addEventListener('click', () => setSidebar(!sidebar.classList.contains('open')));
-overlay.addEventListener('click', () => setSidebar(false));
-sidebar.querySelectorAll('a').forEach(link =>
-  link.addEventListener('click', () => setSidebar(false))
-);
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') setSidebar(false);
+// open / close with the hamburger
+toggle.addEventListener('click', () => {
+  setOpen(!sidebar.classList.contains('open'));
+});
+
+// close after picking a service (mobile)
+serviceButtons.forEach((btn) => {
+  btn.addEventListener('click', () => setOpen(false));
+});
+
+// reset when resizing up to tablet/desktop
+window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+  if (e.matches) setOpen(false);
 });

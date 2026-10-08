@@ -1,17 +1,13 @@
 <?php
-$pageTitle = "Booking Form";
-include 'includes/header.php' ?>
+$pageTitle = "Booking a Service";
+$currentPage = "booking-form";
+include 'includes/header.php';
+?>
 
 <main>
     <section class="layout">
         <div class="sidebar">
-            <h2>SERVICES</h2>
-            <button>BRAKES</button>
-            <button>OIL CHANGE</button>
-            <button>TIRES &amp; BATTERIES</button>
-            <button>SUSPENSION</button>
-            <button>MAINTENANCE</button>
-            <button>PACKAGES</button>
+            
         </div>
 
         <div class="body">
@@ -80,3 +76,5 @@ include 'includes/header.php' ?>
         </div>
     </section>
 </main>
+
+<?php include 'includes/footer.php'; ?>

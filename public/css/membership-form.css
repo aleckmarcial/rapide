@@ -1,0 +1,299 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--rapide-yellow);
+  align-items: center;
+}
+
+.form-card {
+  width: min(100% - 40px, 800px);
+  background-color: #f9cd75;
+  margin-block: 1.2rem;
+  padding: 1rem;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  border-radius: 0.8rem;
+}
+
+.form-card h1 {
+  font-family: var(--backup-font);
+  font-size: clamp(1.3rem, 3vw, 2.5rem);
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.user-details-container, .user-password-container{
+  margin-bottom: 1rem;
+}
+
+.user-details-container h2, .user-password-container h2{
+  font-family: var(--backup-font);
+  font-size: clamp(1.1rem, 2vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.user-details-input, .user-password-input {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-left: 0.3rem;
+}
+
+.user-details-input input, .user-password-input input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  background: #fafafa;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.user-details-input input::placeholder, .user-password-input inpute::placeholder {
+  color: #888;
+}
+
+.user-details-input input:focus, .user-password-input input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.user-payment-container {
+  margin-bottom: 1rem;
+}
+
+.user-payment-container h2 {
+  font-family: var(--backup-font);
+  font-size: clamp(1.1rem, 2vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.user-payment-input {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 1rem;
+  margin-left: 0.3rem;
+}
+
+/* Shared look for select + inputs */
+.user-payment-input select,
+.user-payment-input input {
+  width: 100%;
+  min-height: 48px;           /* comfortable tap target */
+  padding: 0.75rem 1rem;
+  font-size: 16px;            /* stops iOS from zooming on focus */
+  font-family: var(--font-body);
+  background: #fafafa;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.user-payment-input select {
+  cursor: pointer;
+}
+
+.user-payment-input select:focus,
+.user-payment-input input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Labels sit above their inputs, hidden until a method is chosen */
+.user-payment-input .field {
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+/* E-wallet methods show the e-wallet fields */
+.user-payment-input:has(option[value="gcash"]:checked) .ewallet,
+.user-payment-input:has(option[value="maya"]:checked) .ewallet,
+.user-payment-input:has(option[value="paypal"]:checked) .ewallet,
+/* Visa / Master shows the card fields */
+.user-payment-input:has(option[value="cc"]:checked) .card {
+  display: flex;
+  animation: fieldIn 0.25s ease;
+}
+
+@keyframes fieldIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+
+  h2 {
+    font-family: var(--backup-font);
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  p{
+    font-family: var(--font-body);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.doc-lists{
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-body);
+  margin-bottom: 1rem;
+
+  ul {
+    padding-left: 1.5rem;
+  }
+}
+
+.upload-box{
+  border: 2px solid;
+  width: 100%;
+  max-width: 300px;
+  min-height: 220px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.perks-card {
+  width: 45ch;
+  height: 45ch;
+  background-color: #F9CD75;
+  border-radius: 0.8rem;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perks-list span {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.perks-list span::before {
+  content: "✔";
+  color: #0a9a1a;
+  font-size: 28px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.price {
+  margin: 0;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffee00;
+  text-shadow:
+    -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px  1px 0 #000, 1px  1px 0 #000,
+     2px  2px 0 #000;
+}
+
+.terms-title {
+  margin: 16px 0 6px;
+  font-size: 16px;
+}
+
+.terms-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.terms-check input { margin: 0; }
+
+.terms-check label span { color: red; }
+
+.submit-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-wrap input[type="submit"] {
+  width: 157px;
+  height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background: #000;
+  color: #ffee00;
+  font-family: var(--backup-font);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.submit-wrap input[type="submit"]:hover { 
+  background: #FFB22C;
+  color: #000; 
+}
+
+
+
+/* Stack everything on small screens */
+@media (min-width: 768px) {
+  .user-details-container {
+    margin: 1rem;
+  }
+
+  .user-details-input {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .address {
+      grid-column: span 2 / span 2;
+    }
+  }
+
+  .user-password-container {
+    margin: 1rem;
+  }
+
+  .user-password-input{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .user-payment-container{
+    margin: 1rem;
+  }
+
+  .container{
+    display: flex;
+    margin: 1rem;
+    
+  }
+}
