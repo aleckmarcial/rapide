@@ -18,7 +18,7 @@ hamburger.addEventListener("click", () => {
 // Close menu when clicked outside
 document.addEventListener("click", (event) => {
   const clickedInsideMenu = [...menus].some((menu) =>
-    menu.contains(event.target)
+    menu.contains(event.target),
   );
   const clickedHamburger = hamburger.contains(event.target);
 
@@ -97,7 +97,13 @@ if (searchBar && clearSearch && branchList && pagination) {
 // recalculate positions after images load, since they change layout heights
 window.addEventListener("load", () => AOS.refresh());
 
+//upload section on membership form
+const box = document.querySelector(".upload-box");
 
+["dragenter", "dragover"].forEach((evt) =>
+  box.addEventListener(evt, () => box.classList.add("dragover")),
+);
 
-
-
+["dragleave", "drop"].forEach((evt) =>
+  box.addEventListener(evt, () => box.classList.remove("dragover")),
+);

@@ -7,56 +7,57 @@ include 'includes/header.php';
     <section class="form-container">
         <div class="form-card">
             <h1>Apply for Membership</h1>
-            <div class="user-details-container">
-                <h2>Personal Information</h2>
-                <div class="user-details-input">
-                    <input type="text" placeholder="First Name">
-                    <input type="text" placeholder="Last Name">
-                    <input type="text" placeholder="Email Address">
-                    <input type="text" placeholder="Phone number">
-                    <input type="text" placeholder="Home Address" class="address">
+            <div class="account-info-card">
+                <div class="user-details-container">
+                    <h2>Personal Information</h2>
+                    <div class="user-details-input">
+                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="Last Name">
+                        <input type="email" placeholder="Email Address">
+                        <input type="tel" placeholder="Phone number">
+                        <input type="text" placeholder="Home Address" class="address">
+                    </div>
                 </div>
-            </div>
-            <div class="user-password-container">
-                <h2>Create Password</h2>
-                <div class="user-password-input">
-                    <input type="password" placeholder="Password">
-                    <input type="password" name="" id="" placeholder="Re-enter Password">
+                <div class="user-password-container">
+                    <h2>Create Password</h2>
+                    <div class="user-password-input">
+                        <input type="password" placeholder="Password">
+                        <input type="password" name="" id="" placeholder="Re-enter Password">
+                    </div>
                 </div>
-            </div>
-            <div class="user-payment-container">
-                <h2>Payment Information</h2>
-                <div class="user-payment-input">
-                    <select name="payments" id="payments" required>
-                        <option value="" disabled selected hidden>Choose a payment method</option>
-                        <option value="gcash">Gcash</option>
-                        <option value="maya">Maya</option>
-                        <option value="cc">Visa / Master</option>
-                        <option value="paypal">Paypal</option>
-                    </select>
+                <div class="user-payment-container">
+                    <h2>Payment Information</h2>
+                    <div class="user-payment-input">
+                        <select name="payments" id="payments" required>
+                            <option value="" disabled selected hidden>Choose a payment method</option>
+                            <option value="gcash">Gcash</option>
+                            <option value="maya">Maya</option>
+                            <option value="cc">Visa / Master</option>
+                            <option value="paypal">Paypal</option>
+                        </select>
 
-                    <label class="field ewallet">E-wallet Name
-                        <input type="text" name="ewallet_name">
-                    </label>
-                    <label class="field ewallet">E-wallet Number
-                        <input type="tel" name="ewallet_number">
-                    </label>
-                    <label class="field card wide">Cardholder Name
-                        <input type="text" name="card_name">
-                    </label>
-                    <label class="field card wide">Cardholder Number
-                        <input type="text" name="card_number" inputmode="numeric">
-                    </label>
-                    <label class="field card">CCV
-                        <input type="text" name="card_ccv" inputmode="numeric" maxlength="4">
-                    </label>
-                    <label class="field card">Expiration Date
-                        <input type="text" name="card_exp" placeholder="MM/YY" maxlength="5">
-                    </label>
+                        <label class="field ewallet">E-wallet Name
+                            <input type="text" name="ewallet_name">
+                        </label>
+                        <label class="field ewallet">E-wallet Number
+                            <input type="tel" name="ewallet_number">
+                        </label>
+                        <label class="field card wide">Cardholder Name
+                            <input type="text" name="card_name">
+                        </label>
+                        <label class="field card wide">Cardholder Number
+                            <input type="text" name="card_number" inputmode="numeric">
+                        </label>
+                        <label class="field card">CCV
+                            <input type="text" name="card_ccv" inputmode="numeric" maxlength="4">
+                        </label>
+                        <label class="field card">Expiration Date
+                            <input type="text" name="card_exp" placeholder="MM/YY" maxlength="5">
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="container">
-
                 <!-- LEFT COLUMN -->
                 <section class="verification">
                     <h2>Verification</h2>
@@ -84,16 +85,14 @@ include 'includes/header.php';
                     </div>
 
                     <div class="upload-box">
-                        <img id="img" style="max-width: 150px">
-                        <input type="file" name="document" onchange="img.src = window.URL.createObjectURL(this.files[0])">
+                        <p>Click to upload file</p>
+                        <img id="img" alt="">
+                        <input
+                            type="file"
+                            name="document"
+                            accept="image/png, image/jpeg, image/webp, image/heic, image/heif"
+                            onchange="img.src = window.URL.createObjectURL(this.files[0])">
                     </div>
-                    <!-- <div class="upload-area" id="upload-area"> UPLOAD SECTION
-                        <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                        <p>Drag & Drop here to Upload File</p>
-                        <span>OR</span>
-                        <button type="button" id="upload-button">Browse File</button>
-                        <input type="file" id="file-input" name="image" accept=".jpg, .jpeg, .png" value="">
-                    </div> -->
                 </section>
 
                 <!-- RIGHT COLUMN -->
@@ -118,12 +117,10 @@ include 'includes/header.php';
                 </section>
 
             </div>
-
             <div class="submit-wrap">
                 <input type="submit" value="SUBMIT">
             </div>
         </div>
     </section>
 </main>
-
 <?php include 'includes/footer.php'; ?>
