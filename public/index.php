@@ -170,7 +170,10 @@ include 'includes/header.php';
 
     <section id="branch-locator">
         <div class="branch-bg">
-            <h2 class="branch-title">Branch Locator</h2>
+            <div class="branch-title">
+                <img src="img/icons/map-pin.svg" alt="">
+                <h3>Branch Locator</h3>
+            </div>
             <div class="search-bar">
                 <img src="img/icons/search.svg" alt="">
                 <input type="text" id="search-bar" placeholder="Find a branch near you" aria-label="Search branches">

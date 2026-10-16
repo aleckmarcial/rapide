@@ -361,10 +361,6 @@
     margin: 1rem;
   }
 
-  .user-password-input{
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .user-payment-container{
     margin: 1rem;
     margin-bottom: 1.5rem;
