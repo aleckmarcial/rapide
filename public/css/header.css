@@ -204,6 +204,10 @@ nav {
     display: flex;
   }
 
+  .logo-container{
+    margin-right: 0;
+  }
+
   .logo-img {
     height: 40px; /* your base/mobile size, adjust to match what you have now */
     width: auto; /* keeps the aspect ratio */

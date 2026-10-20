@@ -1,208 +1,300 @@
+/* =========================================================
+   Rapide booking form
+   Uses the tokens from :root (put those in your global CSS).
+   ========================================================= */
+
+/* ---------- Page + card ---------- */
 .booking-container {
   display: flex;
   justify-content: center;
-  background-color: var(--rapide-yellow);
-  align-items: center;
+  align-items: flex-start;
+  min-height: 100dvh;                 /* was height: the card was clipped when a panel opened */
+  padding: clamp(1rem, 4vw, 3rem) 0;
+  background-color: var(--bg-color-body);
 }
 
 .booking-card {
   width: min(100% - 40px, 800px);
-  background-color: #f9cd75;
-  margin-block: 1.2rem;
-  padding: 1rem;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background-color: var(--warm-offwhite);
+  border: 2px solid var(--dark-bg);
+  border-radius: 1rem;
+  box-shadow: 8px 8px 0 var(--dark-bg);   /* hard offset shadow, like a service ticket */
   text-align: left;
-  border-radius: 0.8rem;
+  font-family: var(--font-body);
+  color: var(--dark-bg);
 }
 
 .booking-card h1 {
-  font-family: var(--backup-font);
-  font-size: clamp(1.3rem, 3vw, 2.5rem);
+  margin: 0 0 1.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
   text-align: center;
-  font-weight: 900;
-  margin-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 
-.booking-info-card {
+.booking-card h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Each section is separated by a divider line */
+.services,
+.vehicle-information,
+.schedule-section {
+  --accent: var(--dark-bg);
+  --border: var(--color-border);
+  padding-block: 1.5rem;
+  border-top: 2px solid var(--color-border);
+}
+.services { padding-top: 0; border-top: 0; }
+.schedule-section { padding-bottom: 0; }
+
+/* ---------- Shared field styling (selects, date, time) ---------- */
+.booking-card select,
+.booking-card input[type="date"],
+.booking-card input[type="time"] {
   width: 100%;
-  box-sizing: border-box;
-  background-color: #fff;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-  transition: box-shadow 0.2s ease;
-}
-
-.service-container{
-  margin-bottom: 1rem;
-}
-
-.service-container h2 {
-  font-family: var(--backup-font);
-  font-size: clamp(1.1rem, 2vw, 2.5rem);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.service-types {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 1rem;
-  margin-left: 0.3rem;
-}
-
-/* Shared look for select + inputs */
-.service-types select,
-.service-types input {
-  width: 100%;
-  min-height: 48px;           /* comfortable tap target */
-  padding: 0.75rem 1rem;
-  font-size: 16px;            /* stops iOS from zooming on focus */
+  padding: 0.75rem 0.9rem;
   font-family: var(--font-body);
-  background: #fafafa;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--dark-bg);
+  background-color: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: 0.65rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.service-types select {
+.booking-card select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%23202124' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+}
+
+.booking-card select:hover,
+.booking-card input[type="date"]:hover,
+.booking-card input[type="time"]:hover {
+  border-color: var(--dark-bg);
+}
+
+.booking-card select:focus-visible,
+.booking-card input[type="date"]:focus-visible,
+.booking-card input[type="time"]:focus-visible {
+  outline: none;
+  border-color: var(--dark-bg);
+  box-shadow: 0 0 0 4px var(--rapide-yellow);
+}
+
+/* Invalid state after the user has touched the field */
+.booking-card select:user-invalid,
+.booking-card input:user-invalid {
+  border-color: var(--color-error);
+}
+
+/* ---------- Services: collapsed panels ---------- */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;            /* animates height 0 -> auto */
+  opacity: 0;
+  visibility: hidden;                 /* keeps hidden inputs out of the tab order */
+  transition:
+    grid-template-rows 0.45s ease,
+    opacity 0.3s ease,
+    visibility 0s linear 0.45s;       /* delay hiding until the collapse finishes */
+}
+
+.panel-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 4px;                       /* room so focus rings are not clipped */
+  margin: -4px;
+}
+
+/* Show the panel that matches the selected option */
+.services:has(option[value="brakes"]:checked)      .panel[data-service="brakes"],
+.services:has(option[value="oil-change"]:checked)  .panel[data-service="oil-change"],
+.services:has(option[value="tires-bat"]:checked)   .panel[data-service="tires-bat"],
+.services:has(option[value="ac"]:checked)          .panel[data-service="ac"],
+.services:has(option[value="maintenance"]:checked) .panel[data-service="maintenance"],
+.services:has(option[value="pms"]:checked)         .panel[data-service="pms"],
+.services:has(option[value="multiple"]:checked)    .panel[data-service="multiple"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 1rem;
+  transition-delay: 0s;
+}
+
+/* ---------- Service rows (checkbox cards) ---------- */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: 0.65rem;
+  cursor: pointer;
+  user-select: none;
+
+  /* starting state for the slide-in */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.option span {
+  margin-left: auto;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.option:hover {
+  border-color: var(--dark-bg);
+}
+
+.option:has(input:checked) {
+  border-color: var(--dark-bg);
+  background-color: var(--acnt-color);
+}
+
+.option:has(input:focus-visible) {
+  box-shadow: 0 0 0 4px var(--rapide-yellow);
+  border-color: var(--dark-bg);
+}
+
+/* Rows slide in once their panel is open */
+.services:has(option[value="brakes"]:checked)      .panel[data-service="brakes"]      .option,
+.services:has(option[value="oil-change"]:checked)  .panel[data-service="oil-change"]  .option,
+.services:has(option[value="tires-bat"]:checked)   .panel[data-service="tires-bat"]   .option,
+.services:has(option[value="ac"]:checked)          .panel[data-service="ac"]          .option,
+.services:has(option[value="maintenance"]:checked) .panel[data-service="maintenance"] .option,
+.services:has(option[value="pms"]:checked)         .panel[data-service="pms"]         .option,
+.services:has(option[value="multiple"]:checked)    .panel[data-service="multiple"]    .option {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger */
+.option:nth-child(1)   { transition-delay: 0.05s, 0.05s, 0s, 0s; }
+.option:nth-child(2)   { transition-delay: 0.10s, 0.10s, 0s, 0s; }
+.option:nth-child(3)   { transition-delay: 0.15s, 0.15s, 0s, 0s; }
+.option:nth-child(4)   { transition-delay: 0.20s, 0.20s, 0s, 0s; }
+.option:nth-child(5)   { transition-delay: 0.25s, 0.25s, 0s, 0s; }
+.option:nth-child(6)   { transition-delay: 0.30s, 0.30s, 0s, 0s; }
+.option:nth-child(n+7) { transition-delay: 0.35s, 0.35s, 0s, 0s; }
+
+/* ---------- Checkboxes + radios ---------- */
+.option input[type="checkbox"],
+.radio-group input[type="radio"] {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--dark-bg);
   cursor: pointer;
 }
 
-/* Labels sit above their inputs, hidden until a method is chosen */
-.service-types .field {
-  display: none;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.9rem;
+/* ---------- Radio group (fuel type / oil grade) ---------- */
+.radio-group {
+  padding: 0.25rem 0.125rem 0.9rem;
+}
+
+.radio-group p {
+  margin: 0 0 0.5rem;
   font-weight: 600;
-  font-family: var(--font-body);
 }
 
-/* E-wallet methods show the e-wallet fields */
-.service-types:has(option[value="gcash"]:checked) .ewallet,
-.service-types:has(option[value="maya"]:checked) .ewallet,
-.service-types:has(option[value="paypal"]:checked) .ewallet,
-/* Visa / Master shows the card fields */
-.service-types:has(option[value="cc"]:checked) .card {
-  display: flex;
-  animation: fieldIn 0.25s ease;
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-right: 1.25rem;
+  cursor: pointer;
 }
 
-@keyframes fieldIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ---------- Vehicle: three selects in a row ---------- */
+.vehicle-information {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
 }
-
-
-/* Spacing between sections inside the card */
-.account-info-card .user-details-container,
-.account-info-card .user-password-container,
-.account-info-card .user-payment-container {
-  margin: 0 0 1.5rem;
-}
-
-/* Remove extra space after the final section */
-.account-info-card .user-payment-container {
+.vehicle-information h2 {
+  grid-column: 1 / -1;
   margin-bottom: 0;
 }
 
-/* Shared input and select appearance */
-.account-info-card .user-details-input input,
-.account-info-card .user-password-input input,
-.account-info-card .user-payment-input input,
-.account-info-card .user-payment-input select {
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Yellow hover effect */
-.account-info-card input:hover,
-.account-info-card select:hover {
-  border-color: var(--rapide-yellow, #ffc43d);
-}
-
-/* Yellow focus effect */
-.account-info-card input:focus,
-.account-info-card select:focus {
-  outline: none;
-  border-color: var(--rapide-yellow, #ffc43d);
-  box-shadow: 0 0 0 3px rgba(255, 196, 61, 0.3);
-}
-
-
-.user-details-container h2, .user-password-container h2{
-  font-family: var(--backup-font);
-  font-size: clamp(1.1rem, 2vw, 2.5rem);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.user-details-input, .user-password-input {
+/* ---------- Schedule: date + time side by side ---------- */
+.schedule-section {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  margin-left: 0.3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.schedule-section h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
-.user-details-input input, .user-password-input input {
+/* ---------- Submit button (add <button class="btn-book"> to your form) ---------- */
+.btn-book {
+  display: block;
   width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 1rem;
-  font-family: var(--font-body);
-  background: #fafafa;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  margin-top: 1.5rem;
+  padding: 0.9rem 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-bg);
+  background-color: var(--rapide-yellow);
+  border: 2px solid var(--dark-bg);
+  border-radius: 0.65rem;
+  box-shadow: 4px 4px 0 var(--dark-bg);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-book:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--dark-bg);
+}
+.btn-book:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark-bg);
+}
+.btn-book:focus-visible {
+  outline: 3px solid var(--dark-bg);
+  outline-offset: 3px;
 }
 
-.user-details-input input::placeholder, .user-password-input input::placeholder {
-  color: #888;
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .booking-card {
+    box-shadow: 5px 5px 0 var(--dark-bg);
+  }
+  .vehicle-information,
+  .schedule-section {
+    grid-template-columns: 1fr;
+  }
 }
 
-
-/* ============================================ */
-
-@media (min-width: 768px) {
-  .user-details-container {
-    margin: 1rem;
-  }
-
-  .user-details-input {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-
-    .address {
-      grid-column: span 2 / span 2;
-    }
-  }
-
-  .user-password-container {
-    margin: 1rem;
-  }
-
-  .user-payment-container{
-    margin: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .container{
-    display: flex;
-    margin: 1rem;
-  }
-
-  .upload-box{
-    margin-bottom: 0rem;
-  }
-
-  .perks-card {
-    min-height: 22rem;
-    padding: 2rem;
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .option,
+  .btn-book {
+    transition: none !important;
   }
 }
