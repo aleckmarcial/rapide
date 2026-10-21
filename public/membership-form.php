@@ -6,8 +6,7 @@ include 'includes/header.php';
 <main>
     <section class="form-container">
         <div class="form-card">
-            <h1>Apply for Membership</h1>
-            <div class="account-info-card">
+            <h1>Membership Application</h1>
                 <div class="user-details-container">
                     <h2>Personal Information</h2>
                     <div class="user-details-input">
@@ -56,7 +55,6 @@ include 'includes/header.php';
                         </label>
                     </div>
                 </div>
-            </div>
             <div class="container">
                 <!-- LEFT COLUMN -->
                 <section class="verification">

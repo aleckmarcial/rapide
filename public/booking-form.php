@@ -9,7 +9,6 @@ include 'includes/header.php';
             <h1>Booking form</h1>
             <div class="services">
                 <h2>Services</h2>
-
                 <select name="service" id="service" required>
                     <option value="" disabled selected hidden>Choose your service</option>
                     <option value="brakes">Brakes</option>
@@ -20,6 +19,40 @@ include 'includes/header.php';
                     <option value="pms">PMS Packages</option>
                     <option value="multiple">Multiple services</option>
                 </select>
+
+                <div class="panel" data-service="pms">
+                    <div class="panel-inner">
+
+                        <div class="radio-group">
+                            <p>Choose your oil</p>
+                            <label><input type="radio" name="oil_grade" value="regular" checked> Regular Oil</label>
+                            <label><input type="radio" name="oil_grade" value="semi"> Semi-Synthetic Oil</label>
+                            <label><input type="radio" name="oil_grade" value="full"> Fully-Synthetic Oil</label>
+                        </div>
+
+                        <!-- REGULAR -->
+                        <div class="grade-group" data-grade="regular">
+                            <label class="option"><input type="radio" name="pms" value="pms-reg-express"> PMS Gas Regular Express</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-reg-plus"> PMS Gas Regular Plus</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-reg-premium"> PMS Gas Regular Premium</label>
+                        </div>
+
+                        <!-- SEMI-SYNTHETIC -->
+                        <div class="grade-group" data-grade="semi">
+                            <label class="option"><input type="radio" name="pms" value="pms-semi-express"> PMS Gas Semi-Synthetic Express</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-semi-plus"> PMS Gas Semi-Synthetic Plus</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-semi-premium"> PMS Gas Semi-Synthetic Premium</label>
+                        </div>
+
+                        <!-- FULLY-SYNTHETIC -->
+                        <div class="grade-group" data-grade="full">
+                            <label class="option"><input type="radio" name="pms" value="pms-full-express"> PMS Gas Fully-Synthetic Express</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-full-plus"> PMS Gas Fully-Synthetic Plus</label>
+                            <label class="option"><input type="radio" name="pms" value="pms-full-premium"> PMS Gas Fully-Synthetic Premium</label>
+                        </div>
+
+                    </div>
+                </div>
 
                 <!-- Multiple services -->
                 <div class="panel" data-service="multiple">
@@ -86,6 +119,11 @@ include 'includes/header.php';
                 <input type="date">
                 <input type="time">
             </div>
+            <div class="booking-wrap">
+                <input type="submit" value="Book Now">
+            </div>
         </div>
     </section>
 </main>
+
+<?php include 'includes/footer.php'; ?>

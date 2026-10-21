@@ -15,7 +15,7 @@ include 'includes/header.php';
                 <div data-aos="fade-up" data-aos-duration="1000">
                     <h1>Experience the Rapide Way!</h1>
                     <p>CASA-quality services at affordable prices.</p>
-                    <a href="#" class="hero-btn">Book Now</a>
+                    <a href="booking-form.php" class="hero-btn">Book Now</a>
                 </div>
             </div>
         </div>
@@ -106,7 +106,7 @@ include 'includes/header.php';
         </div>
 
         <div class="services-container">
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/brakes.png" alt="Brakes">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
@@ -116,7 +116,7 @@ include 'includes/header.php';
                 <span class="card-cta">Book Now</span>
             </a>
 
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/oil-change.png" alt="Oil Change">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
@@ -126,7 +126,7 @@ include 'includes/header.php';
                 <span class="card-cta">Book Now</span>
             </a>
 
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/tires-batteries.png" alt="Tires & Batteries">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
@@ -136,7 +136,7 @@ include 'includes/header.php';
                 <span class="card-cta">Book Now</span>
             </a>
 
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/ac-services.png" alt="AC Services & Repair">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
@@ -146,7 +146,7 @@ include 'includes/header.php';
                 <span class="card-cta">Book Now</span>
             </a>
 
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/maintenance.png" alt="Maintenance">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
@@ -156,12 +156,12 @@ include 'includes/header.php';
                 <span class="card-cta">Book Now</span>
             </a>
 
-            <a href="#" class="service-card">
+            <a href="booking-form.php" class="service-card">
                 <img src="img/packages.png" alt="Packages">
                 <div class="service-card-overlay"></div>
                 <div class="service-card-fill"></div>
                 <div class="card-content">
-                    <span>Packages</span>
+                    <span>PMS Packages</span>
                 </div>
                 <span class="card-cta">Book Now</span>
             </a>
