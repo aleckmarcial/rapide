@@ -103,6 +103,10 @@ body {
   caret-color: #fff;
 }
 
+.error {
+  color: red;
+}
+
 /* ---------- Button ---------- */
 .submit-btn {
   width: min(100%, 200px);

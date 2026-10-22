@@ -6,7 +6,6 @@ require_once __DIR__ . '/../src/functions/branches.php';
 include 'includes/header.php';
 ?>
 
-
 <main>
     <section id="hero-section">
         <div class="hero-container">
