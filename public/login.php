@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['memstat'] = $user['memstat'];
 
         if ($user['role'] === 'admin') {
-            $page = 'admin1.php';
+            $page = 'admin.php';
         } elseif ($user['memstat'] === 'Pending') {
             $page = 'pending.php';
         } elseif ($user['memstat'] === 'Denied') {

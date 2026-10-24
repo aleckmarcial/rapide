@@ -93,6 +93,7 @@
 .panel {
   display: grid;
   grid-template-rows: 0fr; /* animates height 0 -> auto */
+  font-family: var(--font-body);
   opacity: 0;
   visibility: hidden; /* keeps hidden inputs out of the tab order */
   transition:
@@ -178,13 +179,6 @@
     background-color 0.2s;
 }
 
-.option span {
-  margin-left: auto;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 .option:hover {
   border-color: var(--acnt-color);
 }
@@ -236,6 +230,7 @@
 .radio-group p {
   margin: 0 0 0.5rem;
   font-weight: 600;
+  
 }
 
 .radio-group label {

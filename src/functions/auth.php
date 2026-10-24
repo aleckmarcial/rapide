@@ -1,5 +1,4 @@
 <?php
-// src/functions/auth.php
 function loginUser(mysqli $conn, string $email, string $password)
 {
     $stmt = mysqli_prepare(
