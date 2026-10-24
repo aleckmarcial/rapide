@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($user['memstat'] === 'Denied') {
             $page = 'denied.php';
         } else {
-            $page = 'homepage.php';
+            $page = 'index.php';
         }
 
         header("Location: $page");
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if ($error): ?>
                         <p class="error"><?= htmlspecialchars($error) ?></p>
                     <?php endif; ?>
-                    <button type="submit" class="submit-btn" name="submit">Login</button>
+                    <button type="submit" class="login-btn" name="login">Login</button>
                     <p>Not a member yet? <a href="membership-form.php">Apply now!</a></p>
                 </div>
                 <img src="img/miko2.png" alt="" class="mikko">

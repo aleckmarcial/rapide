@@ -108,7 +108,7 @@ body {
 }
 
 /* ---------- Button ---------- */
-.submit-btn {
+.login-btn {
   width: min(100%, 200px);
   margin-top: 0.75rem;
   padding: 1.1rem 1rem;
@@ -126,16 +126,16 @@ body {
     transform 0.1s;
 }
 
-.submit-btn:hover {
+.login-btn:hover {
   background: var(--bg-color-body);
   color: var(--dark-bg);
 }
 
-.submit-btn:active {
+.login-btn:active {
   transform: scale(0.97);
 }
 
-.submit-btn:focus-visible {
+.login-btn:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
 }
