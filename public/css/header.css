@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
 
 :root {
   --font-heading: "Space Grotesk", sans-serif;
@@ -38,7 +38,7 @@ header {
   /* logo img container */
   width: 70px;
   order: 1;
-  margin-right: 13rem;
+  margin-right: 14.5rem;
 }
 
 .logo-img {
@@ -53,7 +53,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
-  height: 21px;
+  height: 15px;
   background: none;
   border: none;
   cursor: pointer;
@@ -61,7 +61,7 @@ header {
 
   span {
     width: 100%;
-    height: 3px;
+    height: 1px;
     background: whitesmoke;
   }
 }
@@ -169,17 +169,47 @@ nav {
   transform: rotate(90deg);
 }
 
+.user-name {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 0.6rem + 0.9vw, 1.125rem);
+  font-weight: 300;
+  max-width: clamp(8rem, 20vw, 16rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--rapide-yellow);
+  display: none;
+  cursor: default;
+}
 
+.menu-greeting {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--rapide-yellow);
+  overflow-wrap: anywhere; /* long names wrap instead of overflowing the sidebar */
+  cursor: default;
+}
+
+.menu-logout {
+  margin-top: 1rem;
+}
+
+.menu-logout a {
+  color: var(--color-error);
+}
 
 .icons-container {
   order: 2;
   display: flex;
   align-items: center;
-  gap: 4px;
   margin-right: 0.5rem;
 }
 
 .icon-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   transition:
     color 0.2s ease,
@@ -204,7 +234,8 @@ nav {
     display: flex;
   }
 
-  .logo-container{
+  .logo-container {
+    flex: 1;
     margin-right: 0;
   }
 
@@ -259,8 +290,27 @@ nav {
     order: 0;
   }
 
+  .user-name {
+    display: block;
+  }
+
+  .menu-greeting {
+    display: none; /* desktop already shows .user-name in the header */
+  }
+
+  .menu-logout {
+    margin-top: 0;
+    display: none;
+  }
+
+  .icons-container {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
   .icon-link svg {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
   }
 }

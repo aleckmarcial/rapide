@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,15 +37,27 @@
                 <li class="navlinks-close">
                     <button type="button" class="close-btn" id="close-btn" aria-label="Close menu">&times;</button>
                 </li>
+
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <li class="menu-greeting">Hello, <?= htmlspecialchars(ucfirst($_SESSION['fname'] ?? '')) ?>!</li>
+                <?php endif; ?>
+
                 <li><a href="booking-form.php">Book Now</a></li>
                 <li><a href="index.php#services-section">Services</a></li>
                 <li><a href="index.php#branch-locator">Branches</a></li>
                 <li><a href="membership-form.php">Membership</a></li>
                 <li><a href="index.php#about-section">About Us</a></li>
+
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <li class="menu-logout"><a href="logout.php">Log Out</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
 
         <div class="icons-container">
+            <?php if (!empty($_SESSION['user_id'])): ?>
+                <p class="user-name">Hello, <?= htmlspecialchars(ucfirst($_SESSION['fname'] ?? '')); ?>!</p>
+            <?php endif ?>
             <a href="login.php" aria-label="Cart" class="icon-link">
                 <?php include 'img/icons/user.svg'; ?>
             </a>
