@@ -49,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li><a href="index.php#about-section">About Us</a></li>
 
                 <?php if (!empty($_SESSION['user_id'])): ?>
-                    <li class="menu-logout"><a href="logout.php">Log Out</a></li>
+                    <li class="menu-logout"><a href="./logout.php">Log Out</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
