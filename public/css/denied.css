@@ -1,0 +1,112 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("../img/rapide.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.container {
+  width: 100%;
+  padding: 1.25rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  
+}
+
+.container h1 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.container p {
+  margin: 0 0 1.25rem;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.btn {
+  display: block; /* full-width, easy to tap on phones */
+  width: 100%;
+  padding: 0.8rem 1.25rem;
+  background-color: #202124;
+  color: #fee503;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #ffc43d;
+  color: #202124;
+}
+
+/* ---------- Tablet and up ---------- */
+
+@media (min-width: 768px) {
+  main {
+    padding: 1.5rem;
+  }
+
+  .container {
+    max-width: 480px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+
+
+  .container h1 {
+    font-size: 1.5rem;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    display: inline-block; /* button shrinks to fit its text */
+    width: auto;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+

@@ -17,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['fname']   = $user['fname'];
         $_SESSION['role']    = $user['role'];
-        $_SESSION['memstat'] = $user['memstat'];
+        
+        $status = strtolower($user['memstat']);
 
         if ($user['role'] === 'admin') {
             $page = 'admin.php';
